@@ -1,0 +1,41 @@
+# Commands and Arguments in Docker & K8
+
+### Commands and Arguments in Docker
+| Feature                     | `CMD`                                                               | `ENTRYPOINT`                                                  |
+| --------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------- |
+| Purpose                     | Provides **default arguments** for the container                    | Defines **fixed executable** to run                           |
+| Overridable by `docker run` | ✅ Yes – fully overrides `CMD`                                       | ❌ No – unless using `--entrypoint`                            |
+| Syntax                      | Shell or Exec form                                                  | Shell or Exec form                                            |
+| Flexibility                 | More flexible for user override                                     | Better for defining fixed command behavior                    |
+| Common Use                  | Default args for tools (e.g., `CMD ["nginx", "-g", "daemon off;"]`) | Fixed entry script (e.g., `ENTRYPOINT ["python3", "app.py"]`) |
+
+
+### Commands-and-Arguments-in-Kubernetes
+Use command and args if you need to override the image defaults through Kubernetes.
+#### command vs args in Kubernetes
+| Kubernetes Field | Docker Equivalent | Purpose                              |
+| ---------------- | ----------------- | ------------------------------------ |
+| `command`        | `ENTRYPOINT`      | Overrides the container's executable |
+| `args`           | `CMD`             | Arguments passed to the executable   |
+
+
+Example:
+
+Given a Docker image with:
+```
+ENTRYPOINT ["echo"]
+CMD ["Hello from Docker"]
+```
+Kubernetes
+```yml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cmd-only-pod
+spec:
+  containers:
+  - name: demo
+    image: busybox
+    args: ["Hi from K8s"]
+```
+
