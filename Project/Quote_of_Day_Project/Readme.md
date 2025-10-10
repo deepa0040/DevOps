@@ -107,4 +107,11 @@
   <img width="874" height="576" alt="image" src="https://github.com/user-attachments/assets/19fb48cc-c3fb-46e2-a3d4-3a97e3a2f2c2" />
 </details>
 
+## How to run it on ECS.
+<details>
+  <summary>Click me</summary>
+  Step 1: Create Cluster
+  Step 2: Create Task Definition
+  Step 3: Create Service and provide Networking configuration and Load balancer detail 
+</details>
 
